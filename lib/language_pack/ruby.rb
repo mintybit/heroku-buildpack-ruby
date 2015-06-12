@@ -87,7 +87,7 @@ class LanguagePack::Ruby < LanguagePack::Base
       setup_language_pack_environment
       setup_export
       setup_profiled
-      topic("Source Version: #{ENV["SOURCE_VERSION"]}")
+      check_git
       allow_git do
         install_bundler_in_app
         build_bundler
@@ -101,6 +101,11 @@ class LanguagePack::Ruby < LanguagePack::Base
   end
 
 private
+  def check_git
+    topic("Source Version: 1 #{ENV["SOURCE_VERSION"]} #{ENV["GIT_DIR"]}")
+    puts run_stdout("pwd; ls -la /*; env")
+    # puts run_stdout("git log -20 --date-order --graph")
+  end
 
   # the base PATH environment variable to be used
   # @return [String] the resulting PATH
