@@ -87,6 +87,7 @@ class LanguagePack::Ruby < LanguagePack::Base
       setup_language_pack_environment
       setup_export
       setup_profiled
+      topic("Source Version: #{ENV["SOURCE_VERSION"]}")
       allow_git do
         install_bundler_in_app
         build_bundler
